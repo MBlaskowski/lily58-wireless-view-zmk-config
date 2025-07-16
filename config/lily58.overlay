@@ -30,6 +30,6 @@
         // Total number of LEDs in your strip(s).
         // For Lily58, typically 6 per half for underglow (12 total for a split setup).
         // Adjust this number based on your actual LED count.
-        chain-length = <12>;
+        chain-length = <6>;
     };
 };
