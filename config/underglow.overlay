@@ -1,0 +1,35 @@
+/ {
+    chosen {
+        zmk,underglow = &led_strip;
+    };
+
+    led_strip: led_strip {
+        compatible = "ws2812-strip";
+        /*
+         * You need to adjust the pin based on your wiring.
+         * D1 on nice!nano v2 is P0.06
+         * D4 on nice!nano v2 is P0.22
+         */
+        gpio-controller = <&gpio0>;
+        // pin number on the microcontroller
+        // Replace with the GPIO pin you used (e.g., 6 for D1, 22 for D4)
+        // If your PCB has a dedicated "LED" or "DIN" pad, check the Lily58's schematic
+        // to see which nice!nano pin it connects to.
+        // For a Lily58, D4 (P0.22) is often used for RGB.
+        // Example for D4:
+        #if DT_NODE_EXISTS(lily58_left)
+        // Left half (often master)
+        // Check your specific Lily58 PCB's routing. This is a common one.
+        data-gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>; // P0.22
+        #elif DT_NODE_EXISTS(lily58_right)
+        // Right half (often peripheral)
+        // Ensure this matches the left half's configuration or a dedicated peripheral pin
+        data-gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>; // P0.22
+        #endif
+
+        // Total number of LEDs in your strip(s).
+        // For Lily58, typically 6 per half for underglow (12 total for a split setup).
+        // Adjust this number based on your actual LED count.
+        chain-length = <12>;
+    };
+};
