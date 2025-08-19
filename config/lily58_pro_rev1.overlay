@@ -1,0 +1,21 @@
+/*
+ * Copyright (c) 2021 The ZMK Project Contributors
+ * SPDX-License-Identifier: MIT
+ */
+
+/ {
+    chosen {
+        zmk,ext-power = &ext_power;
+        zmk,bt-c-p = &central_peripheral;
+    };
+};
+
+&ext_power {
+    compatible = "zmk,ext-power";
+    pinctrl-0 = <&pinctrl_ext_power>;
+    pinctrl-names = "default";
+};
+
+&central_peripheral {
+    compatible = "zmk,bt-c-p";
+};
