@@ -13,8 +13,16 @@
 #
 ---
 include:
-  - board: nice_nano_v2
+  - board: seeeduino_xiao_ble
     shield: lily58_left nice_view_adapter nice_view
-    snippet: studio-rpc-usb-uart
-  - board: nice_nano_v2
+    cmake-args: -DCONFIG_ZMK_SPLIT=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
+    artifact-name: split-dongle-left
+  - board: seeeduino_xiao_ble
     shield: lily58_right nice_view_adapter nice_view
+    cmake-args: -DCONFIG_ZMK_SPLIT=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
+    artifact-name: split-dongle-right
+  - board: seeeduino_xiao_ble
+    shield: lily_dongle dongle_screen
+    #cmake-args: -DCONFIG_LOG_PROCESS_THREAD_STARTUP_DELAY_MS=8000 #optional if logging is enabled
+    #snippet: zmk-usb-logging #only enable for debugging
+    artifact-name: dongle-screen
